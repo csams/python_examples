@@ -43,7 +43,7 @@ def run(state={}):
             try:
                 state[c] = delegates[c](state)
             except MissingRequirements as m:
-                log.debug("[%s] missing %s" % (c.__name__, str(m.args[0])))
+                log.debug("[%s] is missing %s" % (c.__name__, str(m.args[0])))
             except Exception as ex:
                 log.exception(ex)
     return state

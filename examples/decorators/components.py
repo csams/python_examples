@@ -1,4 +1,13 @@
+import time
+
 from examples.decorators.dr import component
+from examples.decorators.timeit import timeit
+from examples.decorators.memoize import Memoizer
+
+
+@component()
+def boom():
+    raise Exception("Pow!")
 
 
 @component()
@@ -14,6 +23,14 @@ def three():
 @component([two, three])
 def add(a, b):
     return a + b
+
+
+@component([add])
+@timeit
+@Memoizer()
+def long_running(a):
+    time.sleep(a)
+    return a
 
 
 class Common(object):
