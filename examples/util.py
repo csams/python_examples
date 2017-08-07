@@ -12,6 +12,10 @@ def get_name(obj):
     return str(obj)
 
 
+def naive_hash(args, kwargs):
+    return hash(str(args) + str(kwargs))
+
+
 def load_components(path):
     prefix = path.replace('/', '.') + '.'
     path = path.replace('.', '/')

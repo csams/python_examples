@@ -6,6 +6,7 @@
 .cache
 *.swp
 *.tsv
+.ipynb_checkpoints/
 htmlcov
 *.log
 *.class

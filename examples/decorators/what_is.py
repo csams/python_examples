@@ -17,8 +17,12 @@ def square(x):
     return x * x
 
 
-print "mapping square"
-print map(square, range(5))
+def mymap(func, args):
+    return [func(a) for a in args]
+
+
+print "mymap(square, range(5))"
+print mymap(square, range(5))
 
 
 class A(object):
@@ -29,18 +33,19 @@ class A(object):
         return "A(%s)" % self.obj
 
 
-print "mapping A"
-print map(A, range(5))
+print "mymap(A, range(5))"
+print mymap(A, range(5))
 
 
-def make_counter(initial=0, step=1):
-    data = {"d": initial}
-
-    def inner():
-        cur = data["d"]
-        data["d"] += step
-        return cur
+def make_multiplier(n):
+    def inner(x):
+        return n * x
     return inner
+
+
+mul_four = make_multiplier(4)
+print "mul_four(3)"
+print mul_four(3)
 
 
 # Q: What is a decorator?
