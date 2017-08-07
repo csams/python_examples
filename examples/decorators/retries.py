@@ -1,5 +1,6 @@
 import functools
 import random
+from examples.util import get_name
 
 
 def retry(num_retries=3):
@@ -12,7 +13,7 @@ def retry(num_retries=3):
                 try:
                     return func(*args, **kwargs)
                 except Exception as ex:
-                    print "Attempt %s failed!" % attempt
+                    print "%s attempt %s failed!" % (get_name(func), attempt)
                     exception = ex
             raise exception
         return inner

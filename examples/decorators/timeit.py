@@ -19,11 +19,11 @@ log = logging.getLogger(__name__)
 def timeit(func):
     @functools.wraps(func)
     def inner(*args, **kwargs):
-        start = time.clock()
+        start = time.time()
         try:
             return func(*args, **kwargs)
         finally:
-            duration = time.clock() - start
+            duration = time.time() - start
             log.debug("%s took %s" % (get_name(func), duration))
 
     # note that we return inner instead of func!
