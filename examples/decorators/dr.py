@@ -1,5 +1,5 @@
 import logging
-import operator
+from toposort import toposort_flatten
 
 log = logging.getLogger(__name__)
 dependencies = {}
@@ -36,25 +36,9 @@ def component(requires=[]):
     return decorator
 
 
-def run_order(graph):
-    graph = graph.copy()
-    all_deps = reduce(operator.or_, graph.values(), set())
-    graph.update({l: set() for l in all_deps if l not in graph})
-    results = []
-    seen = set()
-    while graph:
-        n = set(n for n in graph if not graph[n])
-        if not n:
-            raise Exception("Circular dependency: %s" % graph)
-        results.extend(n)
-        seen |= n
-        graph = {k: (v - n) for k, v in graph.items() if k not in seen}
-    return results
-
-
 def run(state={}):
     state = state or {}
-    for c in run_order(dependencies):
+    for c in toposort_flatten(dependencies):
         if c not in state and c in delegates:
             try:
                 state[c] = delegates[c](state)
