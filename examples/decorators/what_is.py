@@ -1,4 +1,5 @@
 import logging
+import six
 
 from examples.util import get_name
 
@@ -21,8 +22,8 @@ def mymap(func, args):
     return [func(a) for a in args]
 
 
-print "mymap(square, range(5))"
-print mymap(square, range(5))
+six.print_("mymap(square, range(5))")
+six.print_(mymap(square, range(5)))
 
 
 class A(object):
@@ -33,8 +34,8 @@ class A(object):
         return "A(%s)" % self.obj
 
 
-print "mymap(A, range(5))"
-print mymap(A, range(5))
+six.print_("mymap(A, range(5))")
+six.print_(mymap(A, range(5)))
 
 
 def make_multiplier(n):
@@ -44,8 +45,8 @@ def make_multiplier(n):
 
 
 mul_four = make_multiplier(4)
-print "mul_four(3)"
-print mul_four(3)
+six.print_("mul_four(3)")
+six.print_(mul_four(3))
 
 
 # Q: What is a decorator?

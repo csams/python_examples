@@ -30,3 +30,4 @@ pip-selfcheck.json
 .pydevproject
 *.zip
 *.gz
+pyvenv.cfg

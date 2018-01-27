@@ -1,5 +1,6 @@
 import functools
 import random
+import six
 import time
 from concurrent.futures import TimeoutError, ThreadPoolExecutor as Pool
 
@@ -14,7 +15,7 @@ def timeout(duration=1.0, default=None):
             try:
                 return future.result(duration)
             except TimeoutError:
-                print "Timed out!"
+                six.print_("Timed out!")
                 return default
         return inner
     return decorator
@@ -23,10 +24,10 @@ def timeout(duration=1.0, default=None):
 @timeout(duration=2.0)
 def flaky():
     r = random.randint(0, 5)
-    print "Got %s" % r
+    six.print_("Got: ", r)
     time.sleep(r)
     return r
 
 
 if __name__ == "__main__":
-    print flaky()
+    six.print_(flaky())

@@ -1,16 +1,20 @@
+import sys
 from setuptools import setup, find_packages
 
-runtime = {
+runtime = set([
     "futures",
-    "importlib",
     "six",
     "toposort",
-}
+])
 
-develop = {
+if sys.version_info.major == 2:
+    runtime.add("importlib")
+
+develop = set([
     "flake8",
     "pytest",
-}
+    "ipython",
+])
 
 if __name__ == "__main__":
     setup(
