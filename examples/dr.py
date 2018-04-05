@@ -44,6 +44,6 @@ def run(results=None):
                 results[c] = DELEGATES[c](results)
             except MissingRequirements as mr:
                 six.print_(mr)
-            except Exception as ex:
+            except:
                 traceback.print_exc()
     return results
