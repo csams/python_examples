@@ -33,14 +33,13 @@ class HttpImporter(object):
     used to load from an http(s) endpoint.
     """
 
-    import_prefix = "remote"
     log = logging.getLogger("HttpImporter")
 
-    def __init__(self, path):
+    def __init__(self, path, import_prefix="remote"):
         if not path.startswith(("http://", "https://")):
             raise ImportError("HttpImporter handles http(s) paths, not %s" % path)
         self.path = path.rstrip("/")
-        self.log.debug("Handling %s" % self.path)
+        self.import_prefix = import_prefix
 
     def find_module(self, fullname, paths=None):
         """
