@@ -10,7 +10,7 @@ from monad import Monad
 
 class Prob(Monad):
     @classmethod
-    def return_(self, x):
+    def unit(self, x):
         return Prob(List.from_list([(x, 1.0)]))
 
     def __init__(self, x):
@@ -51,4 +51,4 @@ loaded = Prob(List.from_list([(HEADS, 0.9), (TAILS, 0.1)]))
 all_flips = coin1.bind(lambda x:
             coin2.bind(lambda y:
             loaded.bind(lambda z:
-            Prob.return_([x, y, z]))))
+            Prob.unit([x, y, z]))))

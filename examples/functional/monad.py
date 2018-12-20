@@ -5,7 +5,7 @@ class Functor(object):
 
 class Monad(Functor):
     @classmethod
-    def return_(cls, value):
+    def unit(cls, value):
         raise NotImplemented()
 
     def bind(self, f):

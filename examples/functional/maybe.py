@@ -9,7 +9,7 @@ from monad import Monad
 
 class Maybe(Monad):
     @classmethod
-    def return_(cls, x):
+    def unit(cls, x):
         return Just(x)
 
     def join(self, x):
@@ -39,4 +39,4 @@ class Nothing(Maybe):
 
 result = Just(4).bind(lambda x:
          Just(3).bind(lambda y:
-         Maybe.return_(x * y)))
+         Maybe.unit(x * y)))

@@ -9,7 +9,7 @@ from monad import Monad
 
 class List(Monad):
     @classmethod
-    def return_(cls, x):
+    def unit(cls, x):
         return Cons(x)
 
     def join(self, x):
@@ -67,4 +67,4 @@ class Cons(List):
 combinations = List.from_list([1, 2, 3]).bind(lambda x:
                List.from_list([5, 6, 7]).bind(lambda y:
                List.from_list([8, 9, 0]).bind(lambda z:
-               List.return_((x, y, z)))))
+               List.unit((x, y, z)))))

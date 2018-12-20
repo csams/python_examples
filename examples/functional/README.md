@@ -187,7 +187,7 @@ this
 ```python
 result = Just(4).bind(lambda x:
          Just(3).bind(lambda y:
-         Maybe.return_(x * y)))
+         Maybe.unit(x * y)))
 
 ```
 
@@ -205,7 +205,7 @@ And this
 combinations = List.from_list([1, 2, 3]).bind(lambda x:
                List.from_list([5, 6, 7]).bind(lambda y:
                List.from_list([8, 9, 0]).bind(lambda z:
-               List.return_((x, y, z)))))
+               List.unit((x, y, z)))))
 ```
 
 might look like this:
